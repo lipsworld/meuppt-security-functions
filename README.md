@@ -1,4 +1,5 @@
 === Plugin Name ===
+
 Contributors: meuppt
 Donate link: http://meuppt.pt/
 Tags: security, safety, enhancement, meuppt, segurança, otimização
