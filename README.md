@@ -31,9 +31,14 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 == Screenshots ==
  
 == Changelog ==
+
+= 1.2 =
+* Desabilita o método XML-RPC
+* Remove RSS feed para comentários
+* Desabilita emojis de um modo geral
+* Adiciona botões de cor de fundo nas fontes, caracteres especiais
  
 = 1.0 =
 * Impede exibição de versão do WP em META e em RSS
 * Altera mensagens de erro no login que possam fornecer dicas a hackers para uma única mensagem sem especificações
-* Automatiza a atualização de plugins
  
