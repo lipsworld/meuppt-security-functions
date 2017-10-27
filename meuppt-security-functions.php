@@ -163,3 +163,13 @@ return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved
 add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
 
 */
+
+/* Desabilita pingbacks
+
+ function remove_xmlrpc_pingback_ping( $methods ) {  
+   unset( $methods['pingback.ping'] );  
+   return $methods;  
+} ;  
+add_filter( 'xmlrpc_methods', 'remove_xmlrpc_pingback_ping' );  
+
+*/
