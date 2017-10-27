@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php.
-Version:      1.2.1
+Version:      1.3.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -29,11 +29,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/darylldoyle/svg-sanitizer>
+
 **************************************************************************/
 
-// Aciona autoupdater a partir do Github
+// Aciona autoupdater a partir do Github e script Safe SVG, para uso seguro de imagens SVG na biblioteca de mídia e edição do Wordpress
 
 include_once('updater.php');
+include_once('safe-svg.php');
+
 
 if (is_admin()) { 
 		$config = array(
@@ -125,17 +129,6 @@ add_filter("mce_buttons_2", "enable_more_buttons");
 if(extension_loaded("zlib") && (ini_get("output_handler") != "ob_gzhandler"))
    add_action('wp', create_function('', '@ob_end_clean();@ini_set("zlib.output_compression", 1);'));
    
-*/
-
-
-/* Adiciona suporte para upload de ficheiros SVG na área de multimédia do Wordpress Admin
-
-function wps_mime_types( $mimes ){
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
-}
-add_filter( 'upload_mimes', 'wps_mime_types' );
-
 */
 
 
