@@ -154,3 +154,12 @@ function meuppt_no_admin_access()
 add_action( 'admin_init', 'meuppt_no_admin_access', 100 );
 
 */
+
+/* Marca como spam qualquer comentário com link que exceda 465caracteres
+
+ function meuppt_url_spamcheck( $approved , $commentdata ) {  
+return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved;  
+}  
+add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
+
+*/
