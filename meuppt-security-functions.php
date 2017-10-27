@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php.
-Version:      1.1.5
+Version:      1.2.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -16,7 +16,18 @@ Text Domain:  security-functions-meuppt
 
 Copyright (C) 2017 MeuPPT
 
-Possui uma série de melhorias de segurança para instalações em Wordpress. Distribuição para uso de clientes MeuPPT, porém de livre modificação e uso por terceiros, conforme licença.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 **************************************************************************/
 
@@ -59,11 +70,6 @@ function no_wordpress_errors(){
 add_filter( 'login_errors', 'no_wordpress_errors' );
 
 
-// Automatiza a atualização de plugins
-
-add_filter( 'auto_update_plugin', '__return_true' );
-
-
 // Desabilita o método XML-RPC
 
 add_filter('xmlrpc_enabled', '__return_false');
@@ -103,8 +109,7 @@ function disable_emojicons_tinymce( $plugins ) {
 add_action('init', 'disable_wp_emojicons');
 
 
-
-/* Adiciona botões de cor de fundo nas fontes, caracteres especiais
+// Adiciona botões de cor de fundo nas fontes, caracteres especiais
 
 function enable_more_buttons($buttons) {
   $buttons[] = 'backcolor';
@@ -114,7 +119,6 @@ function enable_more_buttons($buttons) {
 }
 add_filter("mce_buttons_2", "enable_more_buttons");
 
-*/
 
 /* Permite uso de compressão de ficheiros via GZIP
 
