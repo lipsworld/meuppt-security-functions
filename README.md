@@ -39,4 +39,10 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 #### 1.0
 * Impede exibição de versão do WP em META e em RSS
 * Altera mensagens de erro no login que possam fornecer dicas a hackers para uma única mensagem sem especificações
- 
+
+## Próximas atualizações
+
+* Restrição de acesso ao painel do adminpor Subscribers e Contributors
+* Adição suporte para upload de ficheiros SVG na área de multimédia do Wordpress Admin
+* Liberação para uso de compressão de ficheiros via GZIP
+* Considera como spam qualquer comentário com link que exceda 45 caracteres
