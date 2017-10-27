@@ -30,13 +30,19 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
-#### 1.2
+#### 1.3.0
+* Incorporação da classe Safe SVG, para upload e manipulação segura de imagens SVG no Wordpress, com sanitização
+
+#### 1.2.1
+* Fix sistema de updater e atualização
+
+#### 1.2.0
 * Desabilita o método XML-RPC
 * Remove RSS feed para comentários
 * Desabilita emojis de um modo geral
 * Adiciona botões de cor de fundo nas fontes, caracteres especiais
  
-#### 1.0
+#### 1.0.0
 * Impede exibição de versão do WP em META e em RSS
 * Altera mensagens de erro no login que possam fornecer dicas a hackers para uma única mensagem sem especificações
 
