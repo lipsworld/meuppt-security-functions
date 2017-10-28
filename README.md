@@ -55,3 +55,4 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 * Restrição de acesso ao painel do adminpor Subscribers e Contributors
 * Liberação para uso de compressão de ficheiros via GZIP
 * Considera como spam qualquer comentário com link que exceda 45 caracteres
+* Bloqueio de requisições e user agents maliciosos mais comuns
