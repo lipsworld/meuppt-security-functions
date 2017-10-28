@@ -1,20 +1,10 @@
 # MeuPPT Funções de Segurança e Otimização
 
-Contributors: meuppt
-Donate link: http://meuppt.pt/
-Tags: security, safety, enhancement, meuppt, segurança, otimização
-Requires at least: 3.0.1
-Tested up to: 4.8
-Requires PHP: 5.2.4
-Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
- 
 Plugin com funções de segurança e otimização para clientes MeuPPT, porém aberto para qualquer um.
  
 ## Descrição
  
-Rotinas e scripts de segurança geralmente incluídos no functions.php, mais melhorias para sites MeuPPT e de associados.
+Rotinas e scripts de segurança geralmente incluídos no functions.php, mais melhorias para sites MeuPPT e de associados. O plugin é plug and play - não há necessidade de qualquer tipo de configuração. Entendemos que clientes em geral não possuem domínio de Wordpress suficiente para configurarem sozinhos mecanismos de proteção a exploit e funcionalidades dentro do ambiente do Wordpress. Por essa razão, a maioria das funções aqui implementadas, que visam segurança, otimização e facilidade, entram em ação assim que o plugin é ativado - deixando de operar quando o mesmo for desativado.
  
 ## Instalação
  
