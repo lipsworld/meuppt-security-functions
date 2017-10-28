@@ -52,6 +52,5 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 ## Próximas atualizações
 
 * Restrição de acesso ao painel do adminpor Subscribers e Contributors
-* Adição suporte para upload de ficheiros SVG na área de multimédia do Wordpress Admin
 * Liberação para uso de compressão de ficheiros via GZIP
 * Considera como spam qualquer comentário com link que exceda 45 caracteres
