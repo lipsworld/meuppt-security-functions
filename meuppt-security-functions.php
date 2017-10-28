@@ -246,6 +246,9 @@ if (    //strlen($request_uri) > 255 ||
         stripos($user_agent, 'dotbot') ||
         stripos($user_agent, 'finder') ||
         stripos($user_agent, 'flicky') ||
+	stripos($user_agent, 'heritrix') ||
+	stripos($user_agent, 'ia_archiver') ||
+	stripos($user_agent, 'larbin') ||
         stripos($user_agent, 'libwww') ||
         stripos($user_agent, 'nutch') ||
         stripos($user_agent, 'planet') ||
