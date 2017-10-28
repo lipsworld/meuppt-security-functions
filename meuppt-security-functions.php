@@ -36,7 +36,7 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 // Aciona autoupdater a partir do Github e script Safe SVG, para uso seguro de imagens SVG na biblioteca de mídia e edição do Wordpress
 
 include ('updater.php');
-include ('safe-svg.php');
+include ('safe-svg/safe-svg.php');
 
 
 if (is_admin()) { 
