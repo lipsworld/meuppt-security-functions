@@ -32,6 +32,7 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 
 #### 1.3.1
 * Fix Safe SVG em seus diretórios e carregamento
+* Remove WLW Manifest do cabeçalho
 
 #### 1.3.0
 * Incorporação da classe Safe SVG, para upload e manipulação segura de imagens SVG no Wordpress, com sanitização
