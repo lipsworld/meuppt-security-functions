@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.3.2
+* Desabilita pingbacks
+
 #### 1.3.1
 * Fix Safe SVG em seus diretórios e carregamento
 * Remove WLW Manifest do cabeçalho
