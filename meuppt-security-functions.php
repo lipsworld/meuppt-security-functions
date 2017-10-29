@@ -128,6 +128,18 @@ function enable_more_buttons($buttons) {
 add_filter("mce_buttons_2", "enable_more_buttons");
 
 
+// Desabilita pingbacks
+
+function meuppt_no_self_ping( &$links ) {
+    $home = get_option( 'home' );
+    foreach ( $links as $l => $link )
+        if ( 0 === strpos( $link, $home ) )
+            unset($links[$l]);
+}
+ 
+add_action( 'pre_ping', 'meuppt_no_self_ping' );
+
+
 /* Permite uso de compressão de ficheiros via GZIP
 
 if(extension_loaded("zlib") && (ini_get("output_handler") != "ob_gzhandler"))
@@ -161,15 +173,6 @@ add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 );
 
 */
 
-/* Desabilita pingbacks
-
- function remove_xmlrpc_pingback_ping( $methods ) {  
-   unset( $methods['pingback.ping'] );  
-   return $methods;  
-} ;  
-add_filter( 'xmlrpc_methods', 'remove_xmlrpc_pingback_ping' );  
-
-*/
 
 /* Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
 
