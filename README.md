@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.1
+* User agent blacklist update
+
 #### 1.4.0
 * Firewall "express". Bloqueio de requisições maliciosas mais comuns e tentativas de acesso com user agents maliciosos
 
