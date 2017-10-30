@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php.
-Version:      1.3.2
+Version:      1.4.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -140,41 +140,7 @@ function meuppt_no_self_ping( &$links ) {
 add_action( 'pre_ping', 'meuppt_no_self_ping' );
 
 
-/* Permite uso de compressão de ficheiros via GZIP
-
-if(extension_loaded("zlib") && (ini_get("output_handler") != "ob_gzhandler"))
-   add_action('wp', create_function('', '@ob_end_clean();@ini_set("zlib.output_compression", 1);'));
-   
-*/
-
-
-/* Restringe acesso ao painel por Subscribers e Contributors - em teste
-
-function meuppt_no_admin_access()
-{
-    $redirect = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : home_url( '/' );
-    if ( 
-        current_user_can( 'Administrator' )
-        OR current_user_can( 'Editor' )
-        OR current_user_can( 'Author' )
-    )
-        exit( wp_redirect( $redirect ) );
-}
-add_action( 'admin_init', 'meuppt_no_admin_access', 100 );
-
-*/
-
-/* Marca como spam qualquer comentário com link que exceda 465caracteres
-
- function meuppt_url_spamcheck( $approved , $commentdata ) {  
-return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved;  
-}  
-add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
-
-*/
-
-
-/* Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
+// Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
 
 $request_uri = $_SERVER['REQUEST_URI'];
 $query_string = $_SERVER['QUERY_STRING'];
@@ -268,5 +234,38 @@ if (    //strlen($request_uri) > 255 ||
         @header('Connection: Close');
         @exit;
 }
+
+
+
+/* Permite uso de compressão de ficheiros via GZIP
+
+if(extension_loaded("zlib") && (ini_get("output_handler") != "ob_gzhandler"))
+   add_action('wp', create_function('', '@ob_end_clean();@ini_set("zlib.output_compression", 1);'));
+   
+*/
+
+
+/* Restringe acesso ao painel por Subscribers e Contributors - em teste
+
+function meuppt_no_admin_access()
+{
+    $redirect = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : home_url( '/' );
+    if ( 
+        current_user_can( 'Administrator' )
+        OR current_user_can( 'Editor' )
+        OR current_user_can( 'Author' )
+    )
+        exit( wp_redirect( $redirect ) );
+}
+add_action( 'admin_init', 'meuppt_no_admin_access', 100 );
+
+*/
+
+/* Marca como spam qualquer comentário com link que exceda 465caracteres
+
+ function meuppt_url_spamcheck( $approved , $commentdata ) {  
+return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved;  
+}  
+add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
 
 */
