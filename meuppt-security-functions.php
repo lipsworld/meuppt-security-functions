@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php.
-Version:      1.4.0
+Version:      1.4.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -213,20 +213,29 @@ if (    //strlen($request_uri) > 255 ||
         stripos($user_agent, 'cmswor') ||
         stripos($user_agent, 'diavol') ||
         stripos($user_agent, 'dotbot') ||
+	stripos($user_agent, 'ecatch') ||
+	stripos($user_agent, 'eirgrabber') ||
         stripos($user_agent, 'finder') ||
         stripos($user_agent, 'flicky') ||
 	stripos($user_agent, 'heritrix') ||
+	stripos($user_agent, 'httrack') ||
+	stripos($user_agent, 'httpdown') ||
 	stripos($user_agent, 'ia_archiver') ||
 	stripos($user_agent, 'larbin') ||
+	stripos($user_agent, 'lftp') ||
         stripos($user_agent, 'libwww') ||
+	stripos($user_agent, 'netmechanic') ||
         stripos($user_agent, 'nutch') ||
+	stripos($user_agent, 'octopus') ||
         stripos($user_agent, 'planet') ||
         stripos($user_agent, 'purebot') ||
         stripos($user_agent, 'pycurl') ||
-        stripos($user_agent, 'skygrid') ||
+        stripos($user_agent, 'sitesnagger') ||
+	stripos($user_agent, 'skygrid') ||
         stripos($user_agent, 'sucker') ||
         stripos($user_agent, 'turnit') ||
         stripos($user_agent, 'vikspi') ||
+	stripos($user_agent, 'xenu') ||
         stripos($user_agent, 'zmeu')
 ) {
         @header('HTTP/1.1 403 Forbidden');
