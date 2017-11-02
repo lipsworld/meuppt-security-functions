@@ -79,7 +79,6 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				// Configuração básica inicial do Wordpress
 				fwrite($file_handle, "# BEGIN WordPress\n");
 				fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
-				fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
 				fwrite($file_handle, "RewriteEngine On\n");
 				fwrite($file_handle, "RewriteBase /\n");
 				fwrite($file_handle, "RewriteRule ^index\.php$ - [L]\n");
@@ -88,6 +87,7 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "RewriteRule . /index.php [L]\n");
 				fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "# END WordPress\n");
+				fwrite($file_handle, "\n");
                 		// Configuração de browser cache
 				fwrite($file_handle, "# START - Ajuste - Browser Caching\n");
 				fwrite($file_handle, "<IfModule mod_expires.c>\n");
