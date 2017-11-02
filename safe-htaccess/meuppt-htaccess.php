@@ -77,7 +77,17 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				// Argumentos do Htaccess 
 				fwrite($file_handle, "\n");
 				// Configuração básica inicial do Wordpress
-				fwrite($file_handle, "# Protege o HTACCESS\n");
+				fwrite($file_handle, "# BEGIN WordPress\n");
+				fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
+				fwrite($file_handle, "RewriteEngine On\n");
+				fwrite($file_handle, "RewriteBase /\n");
+				fwrite($file_handle, "RewriteRule ^index\.php$ - [L]\n");
+				fwrite($file_handle, "RewriteCond %{REQUEST_FILENAME} !-f\n");
+				fwrite($file_handle, "RewriteCond %{REQUEST_FILENAME} !-d\n");
+				fwrite($file_handle, "RewriteRule . /index.php [L]\n");
+				fwrite($file_handle, "</IfModule>\n");
+				fwrite($file_handle, "# END WordPress\n");
+				fwrite($file_handle, "\n");
 				fwrite($file_handle, "<files .htaccess>\n");
 				fwrite($file_handle, "order allow,deny\n");
 				fwrite($file_handle, "deny from all\n");
