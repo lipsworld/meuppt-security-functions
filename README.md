@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.2
+* Otimização de .htaccess Beta
+
 #### 1.4.1
 * User agent blacklist update
 
