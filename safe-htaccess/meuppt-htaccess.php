@@ -77,19 +77,20 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				// Argumentos do Htaccess 
 				fwrite($file_handle, "\n");
 				// Configuração básica inicial do Wordpress
-				fwrite($file_handle, "# BEGIN WordPress\n");
-				fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
-				fwrite($file_handle, "RewriteEngine On\n");
-				fwrite($file_handle, "RewriteBase /\n");
-				fwrite($file_handle, "RewriteRule ^index\.php$ - [L]\n");
-				fwrite($file_handle, "RewriteCond %{REQUEST_FILENAME} !-f\n");
-				fwrite($file_handle, "RewriteCond %{REQUEST_FILENAME} !-d\n");
-				fwrite($file_handle, "RewriteRule . /index.php [L]\n");
-				fwrite($file_handle, "</IfModule>\n");
-				fwrite($file_handle, "# END WordPress\n");
+				fwrite($file_handle, "# Protege o HTACCESS\n");
+				fwrite($file_handle, "<files .htaccess>\n");
+				fwrite($file_handle, "order allow,deny\n");
+				fwrite($file_handle, "deny from all\n");
+				fwrite($file_handle, "</files>\n");
+				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Desabilita assinaturas no servidor\n");
+				fwrite($file_handle, "ServerSignature Off\n");
+				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Desabilita browsing nos diretórios\n");
+				fwrite($file_handle, "Options All -Indexes\n");
 				fwrite($file_handle, "\n");
                 		// Configuração de browser cache
-				fwrite($file_handle, "# START - Ajuste - Browser Caching\n");
+				fwrite($file_handle, "# Configurações do cache no browser\n");
 				fwrite($file_handle, "<IfModule mod_expires.c>\n");
 				fwrite($file_handle, "ExpiresActive On \n");
 				fwrite($file_handle, "ExpiresDefault \"access plus 1 month\" \n");
@@ -101,7 +102,6 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "ExpiresByType text/css \"access 1 month\" \n");
 				fwrite($file_handle, "ExpiresByType application/javascript \"access plus 1 month\" \n");
 				fwrite($file_handle, "</IfModule> \n");
-				fwrite($file_handle, "# END - Ajuste - Browser Caching\n");
 				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
