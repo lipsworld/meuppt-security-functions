@@ -37,6 +37,7 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 
 include ('updater.php');
 include ('safe-svg/safe-svg.php');
+include ('safe-htaccess/meuppt-htaccess.php');
 
 
 if (is_admin()) { 
@@ -49,7 +50,7 @@ if (is_admin()) {
 			'zip_url' => 'https://github.com/lipsworld/meuppt-security-functions/zipball/master', // the zip url of the GitHub repo
 			'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
 			'requires' => '3.0', // which version of WordPress does your plugin require?
-			'tested' => '4.8', // which version of WordPress is your plugin tested up to?
+			'tested' => '4.8.3', // which version of WordPress is your plugin tested up to?
 			'readme' => 'README.md', // which file to use as the readme for the version number
 			'access_token' => '', // Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
 		);
@@ -213,35 +214,54 @@ if (    //strlen($request_uri) > 255 ||
         stripos($user_agent, 'cmswor') ||
         stripos($user_agent, 'diavol') ||
         stripos($user_agent, 'dotbot') ||
-	stripos($user_agent, 'ecatch') ||
-	stripos($user_agent, 'eirgrabber') ||
+	    stripos($user_agent, 'ecatch') ||
+	    stripos($user_agent, 'eirgrabber') ||
         stripos($user_agent, 'finder') ||
         stripos($user_agent, 'flicky') ||
-	stripos($user_agent, 'heritrix') ||
-	stripos($user_agent, 'httrack') ||
-	stripos($user_agent, 'httpdown') ||
-	stripos($user_agent, 'ia_archiver') ||
-	stripos($user_agent, 'larbin') ||
-	stripos($user_agent, 'lftp') ||
+	    stripos($user_agent, 'heritrix') ||
+	    stripos($user_agent, 'httrack') ||
+	    stripos($user_agent, 'httpdown') ||
+        stripos($user_agent, 'ia_archiver') ||
+        stripos($user_agent, 'larbin') ||
+        stripos($user_agent, 'lftp') ||
         stripos($user_agent, 'libwww') ||
-	stripos($user_agent, 'netmechanic') ||
+	    stripos($user_agent, 'netmechanic') ||
         stripos($user_agent, 'nutch') ||
-	stripos($user_agent, 'octopus') ||
+	    stripos($user_agent, 'octopus') ||
         stripos($user_agent, 'planet') ||
         stripos($user_agent, 'purebot') ||
         stripos($user_agent, 'pycurl') ||
         stripos($user_agent, 'sitesnagger') ||
-	stripos($user_agent, 'skygrid') ||
+	    stripos($user_agent, 'skygrid') ||
         stripos($user_agent, 'sucker') ||
         stripos($user_agent, 'turnit') ||
         stripos($user_agent, 'vikspi') ||
-	stripos($user_agent, 'xenu') ||
+	    stripos($user_agent, 'xenu') ||
         stripos($user_agent, 'zmeu')
 ) {
         @header('HTTP/1.1 403 Forbidden');
         @header('Status: 403 Forbidden');
         @header('Connection: Close');
         @exit;
+}
+
+
+// Inicia rotina de reformulação e edição do HTACCESS
+
+register_activation_hook( __FILE__, 'meuppt_speed_browser_caching_install' );
+register_deactivation_hook( __FILE__, 'meuppt_speed_browser_caching_uninstall' );
+
+
+if( !function_exists( 'meuppt_speed_browser_caching_install' ) ) {
+	function meuppt_speed_browser_caching_install() {
+		meuppt_speed_browser_caching_install_htaccess();
+	}
+}
+
+if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
+	function meuppt_speed_browser_caching_uninstall() {
+		meuppt_speed_browser_caching_uninstall_htaccess();
+	}
 }
 
 
