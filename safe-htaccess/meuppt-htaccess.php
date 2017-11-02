@@ -6,49 +6,43 @@ if( !function_exists( 'meuppt_speed_browser_caching_install_htaccess' ) ){
 	
 	function meuppt_speed_browser_caching_install_htaccess(){
 	
-		// Rastreia status da operação
 		$is_install_ok = true;
-		
-		// We don't mess around with .htaccess
 		$backup_filename = 'meuppt_speed_browser_caching_install_backup' . time() . '.htaccess';
-		
-		// Create htaccess if it's not there
 		if( !file_exists( ABSPATH . '.htaccess') ){
 			$newHtaccess = fopen(ABSPATH . '.htaccess', "w");
 			fclose($newHtaccess);
 		}
 		
-		// If there already is an .htaccess file
+		// Já existe um .htaccess 
 		if(file_exists( ABSPATH . '.htaccess') ) {
 		
-			// Try to copy the .htaccess for backup
-			// If copy fails
+			// Tenta efetuar backup
+			// Havendo falhas
 			if(!copy ( ABSPATH . '.htaccess' , ABSPATH . $backup_filename )) {
 			
-				// Operation not ok
+				// Operação falha
 				$is_install_ok = false;
 
 			}
 
 		}
 		
-		// So far so good, let's keep going
+		// Segue adiante
 		if( $is_install_ok ){
 					
-			// Add new rules to .htaccess
+			// Adiciona diretrizes ao .htaccess
 			$is_install_ok = write_htaccess_browser_caching_directives(ABSPATH . '.htaccess');
 
 		}
 
-		// So far so good, let's keep going		
+		
 		if( $is_install_ok ){
 			
-			// Erase backup
+			// Apaga o backup
 			meuppt_speed_browser_caching_erase_file(false, $backup_filename);
 			
 		}
 
-		// Log whether the plugin was installed successfully
 		if($is_install_ok) {
 			update_option( 'meuppt_speed_browser_caching_status', 1);
 		} else {
@@ -138,8 +132,7 @@ if( !function_exists('meuppt_speed_browser_caching_uninstall_htaccess') ){
 		// Rastreia status da operação
 		$is_operation_ok = true;
 		
-		// Try to remove htaccess directives
-		// If it works
+
 		if( meuppt_speed_browser_caching_remove_htaccess_directives($backup_filename) ) {
 		
 			// Mark plugin as deactivated
@@ -148,7 +141,7 @@ if( !function_exists('meuppt_speed_browser_caching_uninstall_htaccess') ){
 			// Rastreia status da operação
 			$is_operation_ok = false;
 		
-		// Oops! Could not remove htaccess files	
+		
 		} else {
 			
 			// Mark plugin as still active
