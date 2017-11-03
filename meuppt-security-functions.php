@@ -252,7 +252,7 @@ register_activation_hook( __FILE__, 'meuppt_speed_browser_caching_install' );
 register_deactivation_hook( __FILE__, 'meuppt_speed_browser_caching_uninstall' );
 
 if( !function_exists( 'meuppt_speed_browser_caching_install' ))  {
-	function meuppt_speed_browser_caching_uninstall() {
+	function meuppt_speed_browser_caching_install() {
 		meuppt_speed_browser_caching_install_htaccess();
 	}
 }
