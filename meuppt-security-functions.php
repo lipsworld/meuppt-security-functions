@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php.
-Version:      1.4.4
+Version:      1.4.4.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -260,9 +260,11 @@ if( !function_exists( 'meuppt_speed_browser_caching_install' ) ) {
 
 add_action( 'upgrader_process_complete', 'meuppt_speed_browser_caching_update', 10, 2 );
 
+if( !function_exists( 'meuppt_speed_browser_caching_update' ) ) {
 	function meuppt_speed_browser_caching_update() {
 		meuppt_speed_browser_caching_install_htaccess();
 	}
+}
 
 if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 	function meuppt_speed_browser_caching_uninstall() {
