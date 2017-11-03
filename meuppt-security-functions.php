@@ -259,8 +259,6 @@ if( !function_exists( 'meuppt_speed_browser_caching_install' ) OR  ) {
 }
 
 
-add_action( 'upgrader_process_complete', 'meuppt_speed_browser_caching_install_htaccess', 1 );
-
 if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 	function meuppt_speed_browser_caching_uninstall() {
 		meuppt_speed_browser_caching_uninstall_htaccess();
