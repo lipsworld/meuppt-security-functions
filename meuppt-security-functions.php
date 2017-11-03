@@ -258,13 +258,14 @@ if( !function_exists( 'meuppt_speed_browser_caching_install' ) ) {
 	}
 }
 
-add_action( 'upgrader_process_complete', 'meuppt_speed_browser_caching_update', 10, 2 );
 
 if( !function_exists( 'meuppt_speed_browser_caching_update' ) ) {
 	function meuppt_speed_browser_caching_update() {
 		meuppt_speed_browser_caching_install_htaccess();
 	}
 }
+
+do_action( 'upgrader_process_complete', 'meuppt_speed_browser_caching_update' );
 
 if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 	function meuppt_speed_browser_caching_uninstall() {
