@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php. IMPORTANTE: a cada atualização, é necessário desativar e reativar o plugin, de modo que o HTACCESS possa ser aprimorado sem conflitos com as aplicações em curso.
-Version:      1.4.4.2
+Version:      1.4.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -248,18 +248,14 @@ if (    //strlen($request_uri) > 255 ||
 
 // Inicia rotina de reformulação e edição do HTACCESS
 
-
-
 register_activation_hook( __FILE__, 'meuppt_speed_browser_caching_install' );
 register_deactivation_hook( __FILE__, 'meuppt_speed_browser_caching_uninstall' );
-
 
 if( !function_exists( 'meuppt_speed_browser_caching_install' ))  {
 	function meuppt_speed_browser_caching_uninstall() {
 		meuppt_speed_browser_caching_install_htaccess();
 	}
 }
-
 
 if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 	function meuppt_speed_browser_caching_uninstall() {
@@ -268,13 +264,6 @@ if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 }
 
 
-
-/* Permite uso de compressão de ficheiros via GZIP
-
-if(extension_loaded("zlib") && (ini_get("output_handler") != "ob_gzhandler"))
-   add_action('wp', create_function('', '@ob_end_clean();@ini_set("zlib.output_compression", 1);'));
-   
-*/
 
 
 /* Restringe acesso ao painel por Subscribers e Contributors - em teste
