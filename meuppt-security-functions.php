@@ -252,19 +252,14 @@ register_activation_hook( __FILE__, 'meuppt_speed_browser_caching_install' );
 register_deactivation_hook( __FILE__, 'meuppt_speed_browser_caching_uninstall' );
 
 
-if( !function_exists( 'meuppt_speed_browser_caching_install' ) ) {
+if( !function_exists( 'meuppt_speed_browser_caching_install' ) OR  ) {
 	function meuppt_speed_browser_caching_install() {
 		meuppt_speed_browser_caching_install_htaccess();
 	}
 }
 
-	   
-if( !function_exists( 'meuppt_speed_browser_caching_update' ) ) {
-	function meuppt_speed_browser_caching_update() {
-		meuppt_speed_browser_caching_install_htaccess();
-	}
-}
-add_action( 'admin_init', 'meuppt_speed_browser_caching_update', 1 );
+
+add_action( 'upgrader_process_complete', 'meuppt_speed_browser_caching_install_htaccess', 1 );
 
 if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 	function meuppt_speed_browser_caching_uninstall() {
