@@ -82,6 +82,11 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "deny from all\n");
 				fwrite($file_handle, "</files>\n");
 				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Compressão habilitada\n");
+				fwrite($file_handle, "<ifmodule mod_deflate.c>\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript\n");
+				fwrite($file_handle, "</ifmodule>\n");
+				fwrite($file_handle, "\n");
 				// Desabilita assinaturas no servidor e browsing em diretórios a partir do navegador
 				fwrite($file_handle, "# Desabilita assinaturas no servidor\n");
 				fwrite($file_handle, "ServerSignature Off\n");
