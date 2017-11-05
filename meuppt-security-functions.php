@@ -33,6 +33,12 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 
 **************************************************************************/
 
+// Impede acesso direto aos ficheiros do plugin
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Accesso negado.' );
+}
+
 // Aciona autoupdater a partir do Github e script Safe SVG, para uso seguro de imagens SVG na biblioteca de mídia e edição do Wordpress
 
 include ('updater.php');
