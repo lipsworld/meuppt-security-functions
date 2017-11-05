@@ -20,6 +20,12 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.5
+* Versão estável de aprimoramento do .htaccess
+* Restrição de acesso ao .htaccess via Apache
+* Ajuste de cache expiration e compressão
+* Desabilita assinaturas no servidor e browsing de diretórios
+
 #### 1.4.2
 * Otimização de .htaccess Beta
 
