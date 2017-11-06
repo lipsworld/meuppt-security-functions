@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php. IMPORTANTE: a cada atualização, é necessário desativar e reativar o plugin, de modo que o HTACCESS possa ser aprimorado sem conflitos com as aplicações em curso.
-Version:      1.4.5
+Version:      1.4.5.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -36,7 +36,7 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 // Impede acesso direto aos ficheiros do plugin
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Accesso negado.' );
+	die( 'Acesso negado.' );
 }
 
 // Aciona autoupdater a partir do Github e script Safe SVG, para uso seguro de imagens SVG na biblioteca de mídia e edição do Wordpress
@@ -49,16 +49,16 @@ include ('safe-htaccess/meuppt-htaccess.php');
 if (is_admin()) { 
 		$config = array(
 			'slug' => plugin_basename(__FILE__),
-			'proper_folder_name' => 'meuppt-security-functions', // this is the name of the folder your plugin lives in
-			'api_url' => 'https://api.github.com/repos/lipsworld/meuppt-security-functions', // the GitHub API url of your GitHub repo
-			'raw_url' => 'https://raw.github.com/lipsworld/meuppt-security-functions/master', // the GitHub raw url of your GitHub repo
-			'github_url' => 'https://github.com/lipsworld/meuppt-security-functions', // the GitHub url of your GitHub repo
-			'zip_url' => 'https://github.com/lipsworld/meuppt-security-functions/zipball/master', // the zip url of the GitHub repo
-			'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
-			'requires' => '3.0', // which version of WordPress does your plugin require?
-			'tested' => '4.8.3', // which version of WordPress is your plugin tested up to?
-			'readme' => 'readme.txt', // which file to use as the readme for the version number
-			'access_token' => '', // Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
+			'proper_folder_name' => 'meuppt-security-functions', // Nome da pasta e slug do plugin
+			'api_url' => 'https://api.github.com/repos/lipsworld/meuppt-security-functions', // API URL do repositório
+			'raw_url' => 'https://raw.github.com/lipsworld/meuppt-security-functions/master', // Raw URL do repositório
+			'github_url' => 'https://github.com/lipsworld/meuppt-security-functions', // URL do Github
+			'zip_url' => 'https://github.com/lipsworld/meuppt-security-functions/zipball/master', // URL do ZIP no Github
+			'sslverify' => true, // Checagem de SSL em atualizações
+			'requires' => '3.0', // Versão mínima do Wordpress
+			'tested' => '4.8.3', // Testado até versão
+			'readme' => 'readme.txt', // Ficheiro com informações
+			'access_token' => '', // Apenas para repositórios privados
 		);
 		new WP_GitHub_Updater($config);
 	}
@@ -220,29 +220,29 @@ if (    //strlen($request_uri) > 255 ||
         stripos($user_agent, 'cmswor') ||
         stripos($user_agent, 'diavol') ||
         stripos($user_agent, 'dotbot') ||
-	    stripos($user_agent, 'ecatch') ||
-	    stripos($user_agent, 'eirgrabber') ||
+	stripos($user_agent, 'ecatch') ||
+	stripos($user_agent, 'eirgrabber') ||
         stripos($user_agent, 'finder') ||
         stripos($user_agent, 'flicky') ||
-	    stripos($user_agent, 'heritrix') ||
-	    stripos($user_agent, 'httrack') ||
-	    stripos($user_agent, 'httpdown') ||
+	stripos($user_agent, 'heritrix') ||
+	stripos($user_agent, 'httrack') ||
+	stripos($user_agent, 'httpdown') ||
         stripos($user_agent, 'ia_archiver') ||
         stripos($user_agent, 'larbin') ||
         stripos($user_agent, 'lftp') ||
         stripos($user_agent, 'libwww') ||
-	    stripos($user_agent, 'netmechanic') ||
+	stripos($user_agent, 'netmechanic') ||
         stripos($user_agent, 'nutch') ||
-	    stripos($user_agent, 'octopus') ||
+	stripos($user_agent, 'octopus') ||
         stripos($user_agent, 'planet') ||
         stripos($user_agent, 'purebot') ||
         stripos($user_agent, 'pycurl') ||
         stripos($user_agent, 'sitesnagger') ||
-	    stripos($user_agent, 'skygrid') ||
+	stripos($user_agent, 'skygrid') ||
         stripos($user_agent, 'sucker') ||
         stripos($user_agent, 'turnit') ||
         stripos($user_agent, 'vikspi') ||
-	    stripos($user_agent, 'xenu') ||
+	stripos($user_agent, 'xenu') ||
         stripos($user_agent, 'zmeu')
 ) {
         @header('HTTP/1.1 403 Forbidden');
