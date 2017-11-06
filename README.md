@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.5.1
+* Fixes e correções menores
+
 #### 1.4.5
 * Versão estável de aprimoramento do .htaccess
 * Restrição de acesso ao .htaccess via Apache
