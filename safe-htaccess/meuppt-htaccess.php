@@ -4,6 +4,12 @@
 // Atualiza o htaccess
 if( !function_exists( 'meuppt_speed_browser_caching_install_htaccess' ) ){
 	function meuppt_speed_browser_caching_install_htaccess(){
+		$directoryName = plugin_dir_path( __FILE__ ) . '/backup/';
+ 		// Verifica se diretório já existe.
+		if(!is_dir($directoryName)){
+    		// Se não existe, cria diretório de backup.
+    		mkdir($directoryName, 0755, true);
+		}
 		$is_install_ok = true;
 		$backup_filename = 'meuppt_speed_browser_caching_install_backup' . time() . '.htaccess';
 		if( !file_exists( ABSPATH . '.htaccess') ){
@@ -107,6 +113,9 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "ExpiresByType text/css \"access 1 month\" \n");
 				fwrite($file_handle, "ExpiresByType application/javascript \"access plus 1 month\" \n");
 				fwrite($file_handle, "</IfModule> \n");
+				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Adiciona UTF-8 como character encoding padrão \n");
+				fwrite($file_handle, "AddDefaultCharset utf-8\n");
 				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
