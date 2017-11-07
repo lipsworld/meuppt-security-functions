@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.5.2
+* Versões anteriores do HTACCESS são salvas em backup em pasta interna do plugin
+
 #### 1.4.5.1
 * Fixes e correções menores
 
