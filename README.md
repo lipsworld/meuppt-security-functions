@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.6
+* Instruções de segurança contra clickjacking e vulnerabilidades XSS
+
 #### 1.4.5.4
 * Fix do bloqueio ao carregamento de script de detecção de emojis - economia adicional de 2KB na abertura de página
 
