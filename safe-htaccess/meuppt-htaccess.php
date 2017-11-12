@@ -124,6 +124,12 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "Header set X-Content-Type-Options nosniff\n");
 				fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Processa JS e CSS em GZIP\n");
+                fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
+				fwrite($file_handle, "RewriteEngine On\n");
+                fwrite($file_handle, "RewriteRule ^(.*\.js) safe-gzip/safe-gzip.php?type=js&file=$1\n");
+				fwrite($file_handle, "RewriteRule ^(.*\.css) safe-gzip/safe-gzip.php?type=css&file=$1\n");
+                fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
