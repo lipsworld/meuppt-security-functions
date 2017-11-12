@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.7
+* Força processamento de CSS e JS em GZIP via classe safe-gzip.php
+
 #### 1.4.6
 * Instruções de segurança contra clickjacking e vulnerabilidades XSS
 
