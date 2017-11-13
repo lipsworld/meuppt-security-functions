@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.8
+* Fix GZIP e hooks para inicialização da extensão zlib
+
 #### 1.4.7
 * Força processamento de CSS e JS em GZIP via classe safe-gzip.php
 
