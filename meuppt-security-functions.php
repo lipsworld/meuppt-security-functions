@@ -39,6 +39,7 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 include ('updater.php');
 include ('safe-svg/safe-svg.php');
 include ('safe-htaccess/meuppt-htaccess.php');
+include ('safe-gzip/safe-gzip.php');
 
 
 if (is_admin()) { 
