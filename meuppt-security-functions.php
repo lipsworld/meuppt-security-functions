@@ -95,6 +95,14 @@ remove_action('wp_head', 'feed_links', 2);
 
 remove_action('wp_head', 'rsd_link');
 
+// Carregamento assíncrono de JS
+
+function meuppt_async_attr($tag){
+	return str_replace( ' src', ' async="async" src', $tag );
+	}
+
+add_filter( 'script_loader_tag', 'meuppt_async_attr', 10 );
+
 
 // Desabilita emojis de um modo geral
 
