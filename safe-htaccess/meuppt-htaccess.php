@@ -88,10 +88,11 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "deny from all\n");
 				fwrite($file_handle, "</files>\n");
 				fwrite($file_handle, "\n");
+				// Gerencia compressão GZIP
 				fwrite($file_handle, "# Compressão habilitada\n");
-				fwrite($file_handle, "<ifmodule mod_deflate.c>\n");
-				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript\n");
-				fwrite($file_handle, "</ifmodule>\n");
+				fwrite($file_handle, "<FilesMatch "\.(html?|txt|css|js|php|pl)$">\n");
+				fwrite($file_handle, "SetOutputFilter DEFLATE\n");
+				fwrite($file_handle, "</FilesMatch>\n");
 				fwrite($file_handle, "\n");
 				// Desabilita assinaturas no servidor e browsing em diretórios a partir do navegador
 				fwrite($file_handle, "# Desabilita assinaturas no servidor\n");
@@ -116,13 +117,6 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "\n");
 				fwrite($file_handle, "# Adiciona UTF-8 como character encoding padrão \n");
 				fwrite($file_handle, "AddDefaultCharset utf-8\n");
-				fwrite($file_handle, "\n");
-				fwrite($file_handle, "# Processa JS e CSS em GZIP\n");
-                fwrite($file_handle, "<IfModule mod_rewrite.c>\n");
-				fwrite($file_handle, "RewriteEngine On\n");
-                fwrite($file_handle, "RewriteRule ^(.*\.js) safe-gzip/safe-gzip.php?type=js&file=$1\n");
-				fwrite($file_handle, "RewriteRule ^(.*\.css) safe-gzip/safe-gzip.php?type=css&file=$1\n");
-                fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
