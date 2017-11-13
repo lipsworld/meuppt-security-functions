@@ -89,6 +89,33 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "</files>\n");
 				fwrite($file_handle, "\n");
 				// Gerencia compressão GZIP
+				fwrite($file_handle, "<IfModule mod_deflate.c>\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/html\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/css\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/javascript\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/xml\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE text/plain\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE image/x-icon\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE image/svg+xml\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/rss+xml\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/javascript\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-javascript\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/xml\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/xhtml+xml\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-font\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-font-truetype\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-font-ttf\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-font-otf\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/x-font-opentype\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE application/vnd.ms-fontobject\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE font/ttf\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE font/otf\n");
+				fwrite($file_handle, "AddOutputFilterByType DEFLATE font/opentype\n");
+				fwrite($file_handle, "# For Olders Browsers Which Can't Handle Compression\n");
+				fwrite($file_handle, "BrowserMatch ^Mozilla/4 gzip-only-text/html\n");
+				fwrite($file_handle, "BrowserMatch ^Mozilla/4\.0[678] no-gzip\n");
+				fwrite($file_handle, "BrowserMatch \bMSIE !no-gzip !gzip-only-text/html\n");
+				fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "\n");
 				// Desabilita assinaturas no servidor e browsing em diretórios a partir do navegador
 				fwrite($file_handle, "# Desabilita assinaturas no servidor\n");
