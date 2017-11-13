@@ -89,12 +89,6 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "</files>\n");
 				fwrite($file_handle, "\n");
 				// Gerencia compressão GZIP
-				fwrite($file_handle, "# Compressão habilitada\n");
-				fwrite($file_handle, "<IFModule mod_deflate.c>\n");
-				fwrite($file_handle, "<Filesmatch "\.(js|css|html|jpg|png|php)$">\n");
-				fwrite($file_handle, "SetOutputFilter DEFLATE\n");
-				fwrite($file_handle, "</FilesMatch>\n");
-				fwrite($file_handle, "</IFModule>\n");
 				fwrite($file_handle, "\n");
 				// Desabilita assinaturas no servidor e browsing em diretórios a partir do navegador
 				fwrite($file_handle, "# Desabilita assinaturas no servidor\n");
