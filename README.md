@@ -20,6 +20,9 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.9
+* Carregamento assíncrono de scripts JS
+
 #### 1.4.8
 * Fix GZIP e hooks para inicialização da extensão zlib
 
