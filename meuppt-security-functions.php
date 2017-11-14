@@ -289,4 +289,19 @@ return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved
 }  
 add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
 
+
+// Remove extensão de identificação de versões em todos os ficheiros CSS e JS acionados
+
+function meuppt_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'meuppt_remove_wp_ver_css_js', 9999 );
+add_filter( 'script_loader_src', 'meuppt_remove_wp_ver_css_js', 9999 );
+
+
 */
+
+
+
