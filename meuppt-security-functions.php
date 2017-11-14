@@ -81,15 +81,6 @@ function no_wordpress_errors(){
 add_filter( 'login_errors', 'no_wordpress_errors' );
 
 
-// Carregamento assíncrono de JS
-
-function meuppt_async_attr($tag){
-	return str_replace( ' src', ' async="async" src', $tag );
-	}
-
-add_filter( 'script_loader_tag', 'meuppt_async_attr', 10 );
-
-
 // Desabilita o método XML-RPC
 
 add_filter('xmlrpc_enabled', '__return_false');
@@ -125,16 +116,6 @@ function meuppt_disable_emojis() {
  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 }
 add_action( 'init', 'meuppt_disable_emojis' );
-
-function disable_emojicons_tinymce( $plugins ) {
-  if (is_array($plugins)) {
-    return array_diff($plugins, array('wpemoji'));
-  } else {
-    return array();
-  }
-}
-
-add_action('init', 'disable_wp_emojicons');
 
 
 // Adiciona botões de cor de fundo nas fontes, caracteres especiais
