@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php. Recomenda-se desativação e reativação do plugin após atualizações, para que o sistema verifique possibilidades de conflito em outros plugins. Versões anteriores do HTACCESS serão armazenadas em um diretório de backup na pasta do próprio plugin.
-Version:      1.4.7
+Version:      1.4.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -39,6 +39,7 @@ Contribuição do sanitizador de SVG de Daryll Doyle - <https://github.com/daryl
 include ('updater.php');
 include ('safe-svg/safe-svg.php');
 include ('safe-htaccess/meuppt-htaccess.php');
+include ('safe-gzip/safe-gzip.php');
 
 
 if (is_admin()) { 
@@ -94,6 +95,14 @@ remove_action('wp_head', 'feed_links', 2);
 
 remove_action('wp_head', 'rsd_link');
 
+// Carregamento assíncrono de JS
+
+function meuppt_async_attr($tag){
+	return str_replace( ' src', ' async="async" src', $tag );
+	}
+
+add_filter( 'script_loader_tag', 'meuppt_async_attr', 10 );
+
 
 // Desabilita emojis de um modo geral
 
@@ -107,16 +116,6 @@ function meuppt_disable_emojis() {
  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 }
 add_action( 'init', 'meuppt_disable_emojis' );
-
-function disable_emojicons_tinymce( $plugins ) {
-  if (is_array($plugins)) {
-    return array_diff($plugins, array('wpemoji'));
-  } else {
-    return array();
-  }
-}
-
-add_action('init', 'disable_wp_emojicons');
 
 
 // Adiciona botões de cor de fundo nas fontes, caracteres especiais

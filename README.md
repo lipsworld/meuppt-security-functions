@@ -20,6 +20,15 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
  
 ## Changelog 
 
+#### 1.4.9
+* Carregamento assíncrono de scripts JS
+
+#### 1.4.8
+* Fix GZIP e hooks para inicialização da extensão zlib
+
+#### 1.4.7
+* Força processamento de CSS e JS em GZIP via classe safe-gzip.php
+
 #### 1.4.6
 * Instruções de segurança contra clickjacking e vulnerabilidades XSS
 
@@ -72,7 +81,6 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 
 ## Próximas atualizações
 
-* Restrição de acesso ao painel do adminpor Subscribers e Contributors
-* Liberação para uso de compressão de ficheiros via GZIP
 * Considera como spam qualquer comentário com link que exceda 45 caracteres
+* Carregamento asíncrono de scripts JS
 * Bloqueio de requisições e user agents maliciosos mais comuns
