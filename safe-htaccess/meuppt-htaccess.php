@@ -21,7 +21,7 @@ if( !function_exists( 'meuppt_speed_browser_caching_install_htaccess' ) ){
 		if(file_exists( ABSPATH . '.htaccess') ) {
 			// Tenta efetuar backup
 			// Havendo falhas
-			if(!copy ( ABSPATH . '.htaccess' , ABSPATH . $backup_filename )) {
+			if(!copy ( ABSPATH . '.htaccess' , $directoryName . $backup_filename )) {
 				// Operação falha
 				$is_install_ok = false;
 			}
@@ -200,7 +200,7 @@ if( !function_exists('meuppt_speed_browser_caching_remove_htaccess_directives') 
 		
 		// Copy htaccess for backup
 		// If backup failed
-		if( !copy ( ABSPATH . '.htaccess' , ABSPATH . $backup_filename )) {
+		if( !copy ( ABSPATH . '.htaccess' , $directoryName . $backup_filename )) {
 			// Rastreia status da operação
 			$is_operation_ok = false;
 		}
@@ -210,7 +210,7 @@ if( !function_exists('meuppt_speed_browser_caching_remove_htaccess_directives') 
 			// Get file handle for writing
 			$file_handle = fopen(ABSPATH . '.htaccess', "w");
 			// Get file lines as array
-			$lines = file( ABSPATH . $backup_filename );
+			$lines = file( $directoryName . $backup_filename );
 			// Lock htaccess 
 			if (flock($file_handle, LOCK_EX)) {
 			
