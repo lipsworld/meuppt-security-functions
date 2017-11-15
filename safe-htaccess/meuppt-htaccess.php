@@ -3,13 +3,21 @@
 
 // Atualiza o htaccess
 if( !function_exists( 'meuppt_speed_browser_caching_install_htaccess' ) ){
+	
 	function meuppt_speed_browser_caching_install_htaccess(){
 		$directoryName = plugin_dir_path( __FILE__ ) . '/backup/';
  		// Verifica se diretório já existe.
 		if(!is_dir($directoryName)){
     		// Se não existe, cria diretório de backup.
     		mkdir($directoryName, 0755, true);
-		}
+		} else {
+            	array_map(function($value) {
+                	$this->delete($value);
+                	rmdir($value);
+            	},glob($directoryName . '/*', GLOB_ONLYDIR));
+            	array_map('unlink', glob($directoryName."/*")); // Deleta ficheiros antigos do backup
+        	}
+		
 		$is_install_ok = true;
 		$backup_filename = 'meuppt_speed_browser_caching_install_backup' . time() . '.htaccess';
 		if( !file_exists( ABSPATH . '.htaccess') ){
