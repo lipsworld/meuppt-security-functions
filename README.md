@@ -84,3 +84,4 @@ Trata-se de um plugin para clientes, então funções já vêm configuradas.
 * Considera como spam qualquer comentário com link que exceda 45 caracteres
 * Carregamento asíncrono de scripts JS
 * Bloqueio de requisições e user agents maliciosos mais comuns
+* Redução do HTML na renderização - eliminação de comentários e espaços
