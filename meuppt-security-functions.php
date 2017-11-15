@@ -264,7 +264,23 @@ if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 }
 
 
+/* Redução do HTML por meio da remoção de comentários e espaços em branco na renderização
 
+function meuppt_html_callback($buffer){
+  $buffer = preg_replace('/<!--(.|s)*?-->/', '', $buffer); // Remove comentários
+  $buffer = preg_replace('/\s+/', ' ', $buffer); // Remove espaços
+  return $buffer;
+}
+function buffer_start(){ 
+  ob_start("meuppt_html_callback");
+}
+function buffer_end(){
+  ob_end_flush();
+}
+add_action('get_header', 'buffer_start');
+add_action('wp_footer', 'buffer_end');
+
+*/
 
 /* Restringe acesso ao painel por Subscribers e Contributors - em teste
 
