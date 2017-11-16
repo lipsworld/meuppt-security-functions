@@ -11,6 +11,10 @@ Rotinas e scripts de segurança geralmente incluídos no functions.php, mais mel
 1. Carregue o ZIP no diretório `/wp-content/plugins/`
 2. Active o plugin na seção 'Plugins' do WordPress
 3. Todos os comandos e funções não precisam de configuração
+
+## Limitações e incompatibilidades
+
+Rotina de carregamento assíncrono de scripts afeta edição de widgets Texto e HTML na versão 4.9 do Wordpress. Correções deverão ser efetuadas no futuro.
  
 ## Frequently Asked Questions
  
