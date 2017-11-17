@@ -149,6 +149,10 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "# Adiciona UTF-8 como character encoding padrão \n");
 				fwrite($file_handle, "AddDefaultCharset utf-8\n");
 				fwrite($file_handle, "\n");
+				fwrite($file_handle, "#Remove ETag header\n");
+				fwrite($file_handle, "Header unset ETag\n");
+				fwrite($file_handle, "FileETag None\n");
+				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
 				// Força sobrescrita
