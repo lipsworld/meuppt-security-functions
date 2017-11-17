@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php. Recomenda-se desativação e reativação do plugin após atualizações, para que o sistema verifique possibilidades de conflito em outros plugins. Versões anteriores do HTACCESS serão armazenadas em um diretório de backup na pasta do próprio plugin.
-Version:      1.4.9
+Version:      1.5.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -63,7 +63,6 @@ if (is_admin()) {
 
 remove_action('wp_head', 'wlwmanifest_link');
 
-
 // Impede exibição de versão do WP em META e em RSS
 
 function meuppt_remove_version() {
@@ -72,7 +71,6 @@ function meuppt_remove_version() {
     
 add_filter('the_generator', 'meuppt_remove_version');
 
-
 // Altera mensagens de erro no login que possam fornecer dicas a hackers para uma única mensagem sem especificações
 
 function no_wordpress_errors(){
@@ -80,29 +78,46 @@ function no_wordpress_errors(){
 }
 add_filter( 'login_errors', 'no_wordpress_errors' );
 
+// Remoção de prefetch sem uso
+
+remove_action('wp_head', 'wp_resource_hints', 2);
+
+// Redução do HTML por meio da remoção de comentários e espaços em branco na renderização
+
+function meuppt_html_callback($buffer){
+  $buffer = preg_replace('/<!--(.|s)*?-->/', '', $buffer); // Remove comentários
+  $buffer = preg_replace('/\s+/', ' ', $buffer); // Remove espaços
+  return $buffer;
+}
+function buffer_start(){ 
+  ob_start("meuppt_html_callback");
+}
+function buffer_end(){
+  ob_end_flush();
+}
+add_action('get_header', 'buffer_start');
+add_action('wp_footer', 'buffer_end');
+
+// Remove descrição de versão em links CSS
+
+function vc_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 
 // Desabilita o método XML-RPC
 
 add_filter('xmlrpc_enabled', '__return_false');
 
-
 // Remove RSS feed para comentários
 
 remove_action('wp_head', 'feed_links', 2);
 
-
 // Desabilita configurações para clientes externos do Wordpress, tais como o app para iPhone
 
 remove_action('wp_head', 'rsd_link');
-
-// Carregamento assíncrono de JS
-
-function meuppt_async_attr($tag){
-	return str_replace( ' src', ' async="async" src', $tag );
-	}
-
-add_filter( 'script_loader_tag', 'meuppt_async_attr', 10 );
-
 
 // Desabilita emojis de um modo geral
 
@@ -117,7 +132,6 @@ function meuppt_disable_emojis() {
 }
 add_action( 'init', 'meuppt_disable_emojis' );
 
-
 // Adiciona botões de cor de fundo nas fontes, caracteres especiais
 
 function enable_more_buttons($buttons) {
@@ -128,7 +142,6 @@ function enable_more_buttons($buttons) {
 }
 add_filter("mce_buttons_2", "enable_more_buttons");
 
-
 // Desabilita pingbacks
 
 function meuppt_no_self_ping( &$links ) {
@@ -137,9 +150,7 @@ function meuppt_no_self_ping( &$links ) {
         if ( 0 === strpos( $link, $home ) )
             unset($links[$l]);
 }
- 
 add_action( 'pre_ping', 'meuppt_no_self_ping' );
-
 
 // Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
 
@@ -245,7 +256,6 @@ if (    //strlen($request_uri) > 255 ||
         @exit;
 }
 
-
 // Inicia rotina de reformulação e edição do HTACCESS
 
 register_activation_hook( __FILE__, 'meuppt_speed_browser_caching_install' );
@@ -264,24 +274,23 @@ if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 }
 
 
-/* Redução do HTML por meio da remoção de comentários e espaços em branco na renderização
+/* Desliga API Json
 
-function meuppt_html_callback($buffer){
-  $buffer = preg_replace('/<!--(.|s)*?-->/', '', $buffer); // Remove comentários
-  $buffer = preg_replace('/\s+/', ' ', $buffer); // Remove espaços
-  return $buffer;
+function disable_json_api () {
+
+  // Filters for WP-API version 1.x
+  add_filter('json_enabled', '__return_false');
+  add_filter('json_jsonp_enabled', '__return_false');
+
+  // Filters for WP-API version 2.x
+  add_filter('rest_enabled', '__return_false');
+  add_filter('rest_jsonp_enabled', '__return_false');
+
 }
-function buffer_start(){ 
-  ob_start("meuppt_html_callback");
-}
-function buffer_end(){
-  ob_end_flush();
-}
-add_action('get_header', 'buffer_start');
-add_action('wp_footer', 'buffer_end');
+add_action( 'after_setup_theme', 'disable_json_api' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 
 */
-
 /* Restringe acesso ao painel por Subscribers e Contributors - em teste
 
 function meuppt_no_admin_access()
