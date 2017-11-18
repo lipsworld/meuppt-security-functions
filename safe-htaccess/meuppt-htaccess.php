@@ -149,6 +149,11 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "# Adiciona UTF-8 como character encoding padrão \n");
 				fwrite($file_handle, "AddDefaultCharset utf-8\n");
 				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Habilita o Keep Alive\n");
+				fwrite($file_handle, "<IfModule mod_headers.c>\n");
+				fwrite($file_handle, "Header set Connection keep-alive\n");
+				fwrite($file_handle, "</IfModule>\n");
+				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
 				// Força sobrescrita
