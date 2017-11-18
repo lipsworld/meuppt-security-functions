@@ -152,6 +152,29 @@ function meuppt_no_self_ping( &$links ) {
 }
 add_action( 'pre_ping', 'meuppt_no_self_ping' );
 
+// Remove descrição de versão em folhas de estilo CSS
+function vc_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
+
+// Desabilita Wordpress JSON API
+
+function disable_json_api () {
+
+  add_filter('json_enabled', '__return_false');
+  add_filter('json_jsonp_enabled', '__return_false');
+
+  add_filter('rest_enabled', '__return_false');
+  add_filter('rest_jsonp_enabled', '__return_false');
+
+}
+add_action( 'after_setup_theme', 'disable_json_api' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+
+
 // Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
 
 $request_uri = $_SERVER['REQUEST_URI'];
