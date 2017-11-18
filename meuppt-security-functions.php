@@ -5,7 +5,7 @@
 Plugin Name:  MeuPPT - Funções de Segurança e Otimização
 Plugin URI:   https://github.com/lipsworld/meuppt-security-functions
 Description:  Inclui uma série de funções para melhorar a segurança da instalação do Wordpress, sem alterações diretas no functions.php. Recomenda-se desativação e reativação do plugin após atualizações, para que o sistema verifique possibilidades de conflito em outros plugins. Versões anteriores do HTACCESS serão armazenadas em um diretório de backup na pasta do próprio plugin.
-Version:      1.5.0
+Version:      1.5.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author:       MeuPPT
@@ -152,14 +152,6 @@ function meuppt_no_self_ping( &$links ) {
 }
 add_action( 'pre_ping', 'meuppt_no_self_ping' );
 
-// Remove descrição de versão em folhas de estilo CSS
-function vc_remove_wp_ver_css_js( $src ) {
-    if ( strpos( $src, 'ver=' ) )
-        $src = remove_query_arg( 'ver', $src );
-    return $src;
-}
-add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
-
 // Desabilita Wordpress JSON API
 
 function disable_json_api () {
@@ -173,7 +165,6 @@ function disable_json_api () {
 }
 add_action( 'after_setup_theme', 'disable_json_api' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
 
 // Implementa funções de firewall básicas, bloqueando uma série de possíveis requisições maliciosas
 
@@ -297,23 +288,7 @@ if( !function_exists( 'meuppt_speed_browser_caching_uninstall' ) ) {
 }
 
 
-/* Desliga API Json
 
-function disable_json_api () {
-
-  // Filters for WP-API version 1.x
-  add_filter('json_enabled', '__return_false');
-  add_filter('json_jsonp_enabled', '__return_false');
-
-  // Filters for WP-API version 2.x
-  add_filter('rest_enabled', '__return_false');
-  add_filter('rest_jsonp_enabled', '__return_false');
-
-}
-add_action( 'after_setup_theme', 'disable_json_api' );
-remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
-*/
 /* Restringe acesso ao painel por Subscribers e Contributors - em teste
 
 function meuppt_no_admin_access()
@@ -337,16 +312,6 @@ return ( strlen( $commentdata['comment_author_url'] ) > 45) ? 'spam' : $approved
 }  
 add_filter( 'pre_comment_approved', 'meuppt_url_spamcheck', 99, 2 ); 
 
-
-// Remove extensão de identificação de versões em todos os ficheiros CSS e JS acionados
-
-function meuppt_remove_wp_ver_css_js( $src ) {
-    if ( strpos( $src, 'ver=' ) )
-        $src = remove_query_arg( 'ver', $src );
-    return $src;
-}
-add_filter( 'style_loader_src', 'meuppt_remove_wp_ver_css_js', 9999 );
-add_filter( 'script_loader_src', 'meuppt_remove_wp_ver_css_js', 9999 );
 
 
 */
