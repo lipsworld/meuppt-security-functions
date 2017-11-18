@@ -154,6 +154,12 @@ if( !function_exists( 'write_htaccess_browser_caching_directives' ) ){
 				fwrite($file_handle, "Header set Connection keep-alive\n");
 				fwrite($file_handle, "</IfModule>\n");
 				fwrite($file_handle, "\n");
+				fwrite($file_handle, "# Remove Etags\n");
+				fwrite($file_handle, "<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)(\.gz)?$">\n");
+				fwrite($file_handle, "Header unset ETag\n");
+				fwrite($file_handle, "FileETag None\n");
+				fwrite($file_handle, "</FilesMatch>\n");
+				fwrite($file_handle, "\n");
 				fflush($file_handle);
 				
 				// Força sobrescrita
